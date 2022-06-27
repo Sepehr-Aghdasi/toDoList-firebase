@@ -1,12 +1,14 @@
 <template>
       <Header />
+      <FormAddTodo />
 </template>
 
 <script>
 import Header from "./components/Header.vue";
+import FormAddTodo from "./components/FormAddTodo.vue";
 
 export default {
-      components: { Header },
+      components: { Header, FormAddTodo },
 };
 </script>
 
