@@ -1,7 +1,13 @@
 <template>
       <Header />
       <FormAddTodo />
-      <ToDoList />
+      <div class="todoList">
+            <div class="container py-4">
+                  <div class="d-flex flex-column align-items-center">
+                        <ToDoList />
+                  </div>
+            </div>
+      </div>
 </template>
 
 <script>
