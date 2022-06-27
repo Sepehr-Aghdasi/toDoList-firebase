@@ -5,8 +5,12 @@
                         <span> todo.text </span>
                   </div>
                   <div>
-                        <button type="button" class="btn btn-info btn-sm">edit</button>
-                        <button type="button" class="btn btn-danger btn-sm ml-1">delete</button>
+                        <button type="button" class="btn btn-info btn-sm text-white me-3">
+                              edit
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm text-white">
+                              delete
+                        </button>
                   </div>
             </div>
 
