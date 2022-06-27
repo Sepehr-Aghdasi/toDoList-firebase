@@ -1,14 +1,16 @@
 <template>
       <Header />
       <FormAddTodo />
+      <ToDoList />
 </template>
 
 <script>
 import Header from "./components/Header.vue";
 import FormAddTodo from "./components/FormAddTodo.vue";
+import ToDoList from "./components/ToDoList.vue";
 
 export default {
-      components: { Header, FormAddTodo },
+      components: { Header, FormAddTodo, ToDoList },
 };
 </script>
 
