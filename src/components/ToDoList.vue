@@ -1,13 +1,15 @@
 <template>
-  
+      <div class="col-6">
+            <Todo />
+      </div>
 </template>
 
 <script>
-export default {
+import Todo from "./Todo.vue";
 
-}
+export default {
+      components: { Todo },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
