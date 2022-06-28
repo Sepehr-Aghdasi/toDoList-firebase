@@ -5,7 +5,7 @@
                   class="d-flex justify-content-between align-items-center border rounded p-3"
             >
                   <div>
-                        <span> todo.text </span>
+                        <span> {{ todosItem.text }} </span>
                   </div>
                   <div>
                         <button
@@ -43,6 +43,7 @@
 
 <script>
 export default {
+      props: ["todosItem"],
       data() {
             return {
                   editMode: false,
