@@ -9,7 +9,7 @@
                   </div>
                   <div>
                         <button
-                              @click="editMode = true"
+                              @click="disableEdit(todosItem.text)"
                               type="button"
                               class="btn btn-info btn-sm text-white me-3"
                         >
@@ -30,11 +30,11 @@
                   class="d-flex justify-content-between align-items-center border rounded p-3"
             >
                   <div>
-                        <input type="text" placeholder="Edit todo...." />
+                        <input v-model="editTodoText" type="text" placeholder="Edit todo...." />
                   </div>
                   <div>
                         <button
-                              @click="handleEdit"
+                              @click="handleEdit(todosItem)"
                               type="button"
                               class="btn btn-success btn-sm px-4"
                         >
@@ -51,14 +51,20 @@ export default {
       data() {
             return {
                   editMode: false,
+                  editTodoText: "",
             };
       },
       methods: {
             enableEdit() {
                   this.editMode = true;
             },
-            handleEdit() {
+            disableEdit(todosItemText) {
+                  this.editMode = true;
+                  this.editTodoText = todosItemText;
+            },
+            handleEdit(todosItem) {
                   this.editMode = false;
+                  this.$emit("editTodo", todosItem, this.editTodoText);
             },
             deleteTodo(todoKey) {
                   this.$emit("deleteTodo", todoKey);
