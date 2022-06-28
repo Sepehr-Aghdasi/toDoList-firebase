@@ -4,7 +4,7 @@
       <div class="todoList">
             <div class="container py-4">
                   <div class="d-flex flex-column align-items-center">
-                        <ToDoList />
+                        <ToDoList :todosData="todosData" />
                   </div>
             </div>
       </div>
