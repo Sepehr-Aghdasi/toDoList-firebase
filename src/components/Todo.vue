@@ -1,11 +1,18 @@
 <template>
       <div class="col-12 mb-2">
-            <div class="d-flex justify-content-between align-items-center border rounded p-3">
+            <div
+                  v-if="editMode === false"
+                  class="d-flex justify-content-between align-items-center border rounded p-3"
+            >
                   <div>
                         <span> todo.text </span>
                   </div>
                   <div>
-                        <button type="button" class="btn btn-info btn-sm text-white me-3">
+                        <button
+                              @click="editMode = true"
+                              type="button"
+                              class="btn btn-info btn-sm text-white me-3"
+                        >
                               edit
                         </button>
                         <button type="button" class="btn btn-danger btn-sm text-white">
@@ -14,19 +21,42 @@
                   </div>
             </div>
 
-            <div class="d-flex justify-content-between align-items-center border rounded p-3">
+            <div
+                  v-else
+                  class="d-flex justify-content-between align-items-center border rounded p-3"
+            >
                   <div>
-                        <input type="text" />
+                        <input type="text" placeholder="Edit todo...." />
                   </div>
                   <div>
-                        <button type="button" class="btn btn-success btn-sm px-4">edit</button>
+                        <button
+                              @click="handleEdit"
+                              type="button"
+                              class="btn btn-success btn-sm px-4"
+                        >
+                              edit
+                        </button>
                   </div>
             </div>
       </div>
 </template>
 
 <script>
-export default {};
+export default {
+      data() {
+            return {
+                  editMode: false,
+            };
+      },
+      methods: {
+            enableEdit() {
+                  this.editMode = true;
+            },
+            handleEdit() {
+                  this.editMode = false;
+            },
+      },
+};
 </script>
 
 <style></style>
