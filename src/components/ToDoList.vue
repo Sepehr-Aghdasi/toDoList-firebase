@@ -1,6 +1,11 @@
 <template>
       <div class="col-6">
-            <Todo v-for="(item, index) in todosData" :key="index" :todosItem="item" />
+            <Todo
+                  @deleteTodo="deleteTodo"
+                  v-for="(item, index) in todosData"
+                  :key="index"
+                  :todosItem="item"
+            />
       </div>
 </template>
 
@@ -13,6 +18,11 @@ export default {
             todosData: {
                   type: Array,
                   required: true,
+            },
+      },
+      methods: {
+            deleteTodo(todoKey) {
+                  this.$emit("deleteTodo", todoKey);
             },
       },
 };
