@@ -20,8 +20,11 @@ export default {
       components: { Header, FormAddTodo, ToDoList },
       data() {
             return {
-                  todos: [],
+                  todosData: [],
             };
+      },
+      created() {
+            this.getTodoData();
       },
       methods: {
             addTodo(todoText) {
@@ -30,7 +33,24 @@ export default {
                         done: false,
                         text: todoText,
                   };
-                  todoApi.post("/todos.json",todoData);
+                  todoApi.post("/todos.json", todoData);
+            },
+            getTodoData() {
+                  todoApi
+                        .get("/todos.json")
+                        .then(({ data }) => {
+                              let todos = Object.entries(data).map(([key, value]) => {
+                                    return {
+                                          key,
+                                          ...value,
+                                    };
+                              });
+                              this.todosData = todos;
+                              console.log(todos);
+                        })
+                        .catch((error) => {
+                              console.error(error);
+                        });
             },
       },
 };
