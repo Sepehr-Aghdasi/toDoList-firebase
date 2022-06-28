@@ -33,7 +33,14 @@ export default {
                         done: false,
                         text: todoText,
                   };
-                  todoApi.post("/todos.json", todoData);
+                  todoApi
+                        .post("/todos.json", todoData)
+                        .then(() => {
+                              this.getTodoData();
+                        })
+                        .catch((error) => {
+                              console.error(error);
+                        });
             },
             deleteTodo(todoKey) {
                   console.log(todoKey);
