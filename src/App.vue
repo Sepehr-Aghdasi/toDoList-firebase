@@ -4,7 +4,7 @@
       <div class="todoList">
             <div class="container py-4">
                   <div class="d-flex flex-column align-items-center">
-                        <ToDoList :todosData="todosData" />
+                        <ToDoList @deleteTodo="deleteTodo" :todosData="todosData" />
                   </div>
             </div>
       </div>
@@ -35,18 +35,33 @@ export default {
                   };
                   todoApi.post("/todos.json", todoData);
             },
+            deleteTodo(todoKey) {
+                  console.log(todoKey);
+                  todoApi
+                        .delete(`/todos/${todoKey}.json`)
+                        .then(() => {
+                              this.getTodoData();
+                        })
+                        .catch((error) => {
+                              console.error(error);
+                        });
+            },
             getTodoData() {
                   todoApi
                         .get("/todos.json")
                         .then(({ data }) => {
-                              let todos = Object.entries(data).map(([key, value]) => {
-                                    return {
-                                          key,
-                                          ...value,
-                                    };
-                              });
-                              this.todosData = todos;
-                              console.log(todos);
+                              if (data) {
+                                    let todos = Object.entries(data).map(([key, value]) => {
+                                          return {
+                                                key,
+                                                ...value,
+                                          };
+                                    });
+                                    this.todosData = todos;
+                                    console.log(todos);
+                              } else {
+                                    this.todosData = [];
+                              }
                         })
                         .catch((error) => {
                               console.error(error);
