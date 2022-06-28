@@ -1,6 +1,6 @@
 <template>
       <Header />
-      <FormAddTodo />
+      <FormAddTodo @add-todo="addTodo" />
       <div class="todoList">
             <div class="container py-4">
                   <div class="d-flex flex-column align-items-center">
@@ -14,9 +14,25 @@
 import Header from "./components/Header.vue";
 import FormAddTodo from "./components/FormAddTodo.vue";
 import ToDoList from "./components/ToDoList.vue";
+import todoApi from "./api/todo.js";
 
 export default {
       components: { Header, FormAddTodo, ToDoList },
+      data() {
+            return {
+                  todos: [],
+            };
+      },
+      methods: {
+            addTodo(todoText) {
+                  let todoData = {
+                        time: Date.now(),
+                        done: false,
+                        text: todoText,
+                  };
+                  todoApi.post("/todos.json",todoData);
+            },
+      },
 };
 </script>
 
