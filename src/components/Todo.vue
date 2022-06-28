@@ -15,7 +15,11 @@
                         >
                               edit
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm text-white">
+                        <button
+                              @click="deleteTodo(todosItem.key)"
+                              type="button"
+                              class="btn btn-danger btn-sm text-white"
+                        >
                               delete
                         </button>
                   </div>
@@ -55,6 +59,9 @@ export default {
             },
             handleEdit() {
                   this.editMode = false;
+            },
+            deleteTodo(todoKey) {
+                  this.$emit("deleteTodo", todoKey);
             },
       },
 };
