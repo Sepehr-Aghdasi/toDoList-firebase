@@ -2,6 +2,7 @@
       <div class="col-6">
             <Todo
                   @deleteTodo="deleteTodo"
+                  @editTodo="editTodo"
                   v-for="(item, index) in todosData"
                   :key="index"
                   :todosItem="item"
@@ -23,6 +24,9 @@ export default {
       methods: {
             deleteTodo(todoKey) {
                   this.$emit("deleteTodo", todoKey);
+            },
+            editTodo(todosItem, editTodoText) {
+                  this.$emit("editTodo", todosItem, editTodoText);
             },
       },
 };
