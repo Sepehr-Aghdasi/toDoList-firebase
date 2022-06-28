@@ -4,7 +4,11 @@
       <div class="todoList">
             <div class="container py-4">
                   <div class="d-flex flex-column align-items-center">
-                        <ToDoList @deleteTodo="deleteTodo" :todosData="todosData" />
+                        <ToDoList
+                              @editTodo="editTodo"
+                              @deleteTodo="deleteTodo"
+                              :todosData="todosData"
+                        />
                   </div>
             </div>
       </div>
@@ -46,6 +50,21 @@ export default {
                   console.log(todoKey);
                   todoApi
                         .delete(`/todos/${todoKey}.json`)
+                        .then(() => {
+                              this.getTodoData();
+                        })
+                        .catch((error) => {
+                              console.error(error);
+                        });
+            },
+            editTodo(todosItem, editTodoText) {
+                  console.log(todosItem, editTodoText);
+                  todoApi
+                        .put(`/todos/${todosItem.key}.json`, {
+                              done: todosItem.done,
+                              time: todosItem.time,
+                              text: editTodoText,
+                        })
                         .then(() => {
                               this.getTodoData();
                         })
